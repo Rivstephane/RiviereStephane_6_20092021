@@ -18,7 +18,7 @@ schema
 .is().not().oneOf(['Passw0rd', 'Password123']); // Blacklist these values
 
 exports.signup = (req, res, next) => {
-  if (!schemaPassValid.validate(req.body.password)) {
+  if (!schema.validate(req.body.password)) {
     res.status(401).json({message:"Sécurité du mot de passe faible. Il doit contenir au moins 8 caractère, 1 majuscules, 1 minuscule et deux chiffres"})
   }
   bcrypt.hash(req.body.password, 10)
